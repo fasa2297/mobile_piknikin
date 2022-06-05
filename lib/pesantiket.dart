@@ -88,12 +88,14 @@ class _PesanTiket extends State<PesanTiket> {
     }
   }
 
+  _backPage() {
+    //mengembalikan ke page detail museum
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pesan Tiket Museum'),
-      ),
+      //appBar: AppBar(),
       key: scaffoldKey,
       body: SafeArea(
           bottom: false,
@@ -103,6 +105,36 @@ class _PesanTiket extends State<PesanTiket> {
             child: ListView(
               padding: EdgeInsets.all(16),
               children: <Widget>[
+                Container(
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      _backPage();
+                    },
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(5, 20, 5, 0),
+                  child: Text(
+                    'Pesan Tiket Museum',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                  child: Text(
+                    'Harap mengisi identitas pengunjung museum',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
+                //const Text('Pesan Tiket Museum'),
+                //const Text('Harap mengisi identitas pengunjung museum'),
                 TextFormField(
                   decoration: InputDecoration(
                       icon: Icon(Icons.person),
@@ -183,7 +215,7 @@ class _PesanTiket extends State<PesanTiket> {
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 40, top: 20),
-                  child: RaisedButton(
+                  child: ElevatedButton(
                       child: Text('Pesan'), onPressed: _submitForm),
                 )
               ],

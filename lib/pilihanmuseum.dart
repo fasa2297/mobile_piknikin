@@ -10,6 +10,11 @@ class _PilihanMuseum extends State<PilihanMuseum> {
   @override
   Widget build(BuildContext context) {
     //final title = 'MyApp';
+/*
+    void _profile() {
+      Navigator.popAndPushNamed(context, "/Profile");
+    }
+*/
     return MaterialApp(
       //title: title,
       home: Scaffold(
@@ -50,6 +55,14 @@ class _PilihanMuseum extends State<PilihanMuseum> {
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: InkWell(
                   onTap: () => print("ciao"),
+                  /*
+                   onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PilihanMuseum()),
+                      );
+                  */
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch, // add this
                     children: <Widget>[

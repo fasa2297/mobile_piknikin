@@ -9,79 +9,95 @@ class LandingPage extends StatefulWidget {
 class _LandingPage extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(primaryColor: Colors.black),
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage("assets/images/Bg-landingpage.jpg"),
+          ),
+        ),
+        child: Scaffold(
+            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+            // resizeToAvoidBottomInset: false,
             body: Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-              Container(
-                  margin: const EdgeInsets.all(5),
-                  child: Text(
-                    'Piknikin di Museum',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  )),
-              Container(
-                  margin: const EdgeInsets.all(5),
-                  child: Text(
-                    'Pecinta seni? piknikin aja..',
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
-                  )),
-              Container(
-                  margin: const EdgeInsets.all(5),
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const PilihanMuseum()),
-                      );
-                    },
-                    label: Text('Ayo Eksplor Museumnya ->'),
-                    icon: Icon(Icons.favorite),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 139, 139, 139),
-                      textStyle: TextStyle(
-                        color: Color.fromARGB(255, 31, 31, 31),
-                        fontSize: 22,
-                      ),
-                    ),
-                  )),
-            ]))));
+                  Container(
+                      margin: const EdgeInsets.all(5),
+                      child: Text(
+                        'Piknikin di Museum',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      )),
+                  Container(
+                      margin: const EdgeInsets.all(5),
+                      child: Text(
+                        'Pecinta seni? piknikin aja..',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.normal,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      )),
+                  Container(
+                      margin: const EdgeInsets.all(5),
+                      width: 250,
+                      height: 45,
+                      child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Color(0xffF18265),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PilihanMuseum()),
+                            );
+                          },
+                          child: Text(
+                            "Ayo eksplor museumnya!",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xffffffff),
+                            ),
+                          )))
+                ]))));
   }
 }
-/*
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/Bg-landingpage.jpg"),
-                fit: BoxFit.cover),
-          ),
-          child: Center(
-            child: ElevatedButton(
-              child: const Text('Ayo eksplor Museumnya ->'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PilihanMuseum()),
-                );
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-            child: Text(
-              "Piknikin di Museum",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-),*/
+
+                        /*
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PilihanMuseum()),
+                          );
+                        },
+                        label: Text('Ayo Eksplor Museumnya ->'),
+                        icon: Icon(Icons.favorite),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 101, 101, 101),
+
+                          /*side: BorderSide(
+                              width: 3,
+                              color: Color.fromARGB(
+                                  255, 203, 170, 116)), */ //border width and color
+                          elevation: 3, //elevation of button
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          padding: EdgeInsets.all(20),
+                          textStyle: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 22,
+                          ),
+                        ),
+                      )),*/
+                
