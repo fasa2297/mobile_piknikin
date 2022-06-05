@@ -1,4 +1,3 @@
-//* page 1
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/landingpage.dart';
 
@@ -10,11 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Home Piknikin",
       home: LandingPage(),
     );
   }
 }
-//*/
 
 /* Page 2
 import 'package:flutter/material.dart';
