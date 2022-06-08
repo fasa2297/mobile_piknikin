@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile_piknikin/pilihanmuseum_seni.dart';
+import 'package:mobile_piknikin/pilihanmuseum_budaya.dart';
+import 'package:mobile_piknikin/pilihanmuseum_sejarah.dart';
 import 'package:intl/intl.dart';
 
 import 'contact.dart';
@@ -108,8 +111,14 @@ class _PesanTiket extends State<PesanTiket> {
                 Container(
                   child: IconButton(
                     icon: Icon(Icons.arrow_back),
+                    alignment: Alignment.topLeft,
                     onPressed: () {
-                      _backPage();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const PilihanMuseum_sejarah()),
+                      );
                     },
                   ),
                 ),

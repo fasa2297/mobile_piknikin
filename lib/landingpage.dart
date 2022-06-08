@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_piknikin/pilihanmuseum.dart';
+import 'package:mobile_piknikin/katagorimuseum.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -36,7 +36,7 @@ class _LandingPage extends State<LandingPage> {
                   Container(
                       margin: const EdgeInsets.all(5),
                       child: Text(
-                        'Pecinta seni? piknikin aja..',
+                        'Pecinta seni? Piknikin aja..',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.normal,
@@ -58,11 +58,11 @@ class _LandingPage extends State<LandingPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const PilihanMuseum()),
+                                  builder: (context) => const KatagoriMuseum()),
                             );
                           },
                           child: Text(
-                            "Ayo eksplor museumnya!",
+                            "Yuk eksplor museum!",
                             style: TextStyle(
                               fontSize: 18,
                               color: Color(0xffffffff),
