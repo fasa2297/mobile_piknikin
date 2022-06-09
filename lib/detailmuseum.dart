@@ -27,6 +27,17 @@ class _DetailMuseum extends State<DetailMuseum> {
               ),
             ],
           ),
+          automaticallyImplyLeading: false,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back,
+                color: Color.fromARGB(255, 15, 15, 15)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PilihanMuseum_budaya()),
+              );
+            },
+          ),
         ),
         body: ListView(
           children: <Widget>[

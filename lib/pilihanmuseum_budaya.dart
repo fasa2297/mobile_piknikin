@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/detailmuseum.dart';
+import 'package:mobile_piknikin/katagorimuseum.dart';
 
 class PilihanMuseum_budaya extends StatefulWidget {
   const PilihanMuseum_budaya({super.key});
@@ -23,6 +24,17 @@ class _PilihanMuseum_budaya extends State<PilihanMuseum_budaya> {
                 height: 32,
               ),
             ],
+          ),
+          automaticallyImplyLeading: false,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back,
+                color: Color.fromARGB(255, 15, 15, 15)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => KatagoriMuseum()),
+              );
+            },
           ),
         ),
         body: ListView(
