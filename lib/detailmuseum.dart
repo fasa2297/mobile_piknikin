@@ -14,7 +14,6 @@ class _DetailMuseum extends State<DetailMuseum> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //title: title,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,

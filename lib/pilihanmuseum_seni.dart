@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/detailmuseum.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
+import 'package:mobile_piknikin/navigationbar.dart';
 
 class PilihanMuseum_seni extends StatefulWidget {
   const PilihanMuseum_seni({super.key});
@@ -58,7 +59,7 @@ class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
                 child: InkWell(
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DetailMuseum()),
+                    MaterialPageRoute(builder: (context) => Navbarr()),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch, // add this
@@ -91,7 +92,7 @@ class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
                 child: InkWell(
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DetailMuseum()),
+                    MaterialPageRoute(builder: (context) => Navbarr()),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
