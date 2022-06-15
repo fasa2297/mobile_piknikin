@@ -127,13 +127,28 @@ class Page3 extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('$page3 Page', style: Theme.of(context).textTheme.headline6),
-          ElevatedButton(
-            onPressed: () => changePage(0),
-            child: const Text('Switch to Home Page'),
-          )
+          Text('Informasi Tentang',
+              style: Theme.of(context).textTheme.headline6),
+          Container(
+            margin: EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 0),
+            child: Image.asset('assets/images/Logo.png',
+                fit: BoxFit.contain, height: 32),
+          ),
+          ListTile(
+            title: Text(
+              '\n Piknikin merupakan aplikasi berbasis mobile yang dapat digunakan untuk melihat berbagai macam museum yang berada di Daerah Istimewa Yogyakarta. Pada aplikasi ini juga dapat digunakan untuk memesan tiket museum yang Anda inginkan, sehingga Anda tidak perlu khawatir jika kehabisan tiket museum tersebut.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal),
+            ),
+            subtitle: Text(
+              '\n Developed by Kelompok 2 \n Fauzi Arya Surya A \n Anindika Riska Intan Fauzy \n Muh Akib A. Yani \n Zahra Fadiah Putri',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal),
+            ),
+          ),
         ],
       ),
     );
