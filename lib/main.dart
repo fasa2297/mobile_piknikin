@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 void main() => runApp(MyApp());
 
 // ------------ Front end progress
-/*
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -21,9 +20,9 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-*/
 
 // ----------- Back end progress
+/*
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,4 +36,4 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
     );
   }
-}
+}*/
