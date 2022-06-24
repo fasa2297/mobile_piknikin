@@ -5,6 +5,12 @@ import 'package:mobile_piknikin/detailmuseum.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
 import 'package:mobile_piknikin/navigationbar.dart';
 
+/*Part of:
+
+ Fauzi Arya Surya Abadi 
+ 1301194101
+*/
+
 class PilihanMuseum_seni extends StatefulWidget {
   const PilihanMuseum_seni({super.key});
   @override
@@ -16,7 +22,7 @@ class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
 
   Future getMuseums() async {
     var response = await http.get(Uri.parse(url));
-    print(json.decode(response.body));
+    //print(json.decode(response.body));
     return json.decode(response.body);
   }
 
@@ -33,6 +39,10 @@ class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
                   'assets/images/Logo.png',
                   fit: BoxFit.contain,
                   height: 32,
+                ),
+                Text(
+                  "  Museum Seni",
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ],
             ),
@@ -56,7 +66,44 @@ class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
                   return ListView.builder(
                       itemCount: snapshot.data['data'].length,
                       itemBuilder: (context, index) {
-                        return Text(snapshot.data['data'][index]['nama']);
+                        return Container(
+                          margin: EdgeInsets.all(8.0),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0))),
+                            child: InkWell(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Navbarr()),
+                              ),
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.stretch, // add this
+                                children: <Widget>[
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8.0),
+                                      topRight: Radius.circular(8.0),
+                                    ),
+                                    child: Image.network(
+                                        snapshot.data['data'][index]
+                                            ['linkfoto'], // width: 300,
+                                        height: 150,
+                                        fit: BoxFit.fill),
+                                  ),
+                                  ListTile(
+                                    title: Text(
+                                        snapshot.data['data'][index]['nama']),
+                                    subtitle: Text(snapshot.data['data'][index]
+                                        ['deskripsi']),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
                       });
                 } else {
                   return Text('Data error');
