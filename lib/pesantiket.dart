@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
 import 'package:mobile_piknikin/navigationbar.dart';
 import 'package:intl/intl.dart';
-
+import 'package:http/http.dart' as http;
 import 'contact.dart';
 
 class PesanTiket extends StatefulWidget {
@@ -15,10 +15,15 @@ class _PesanTiket extends State<PesanTiket> {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
-  TextEditingController _controller = new TextEditingController();
+  TextEditingController _namecontroller = new TextEditingController();
+  TextEditingController _museumcontroller = new TextEditingController();
+  TextEditingController _tanggalcontroller = new TextEditingController();
+  TextEditingController _notelpcontroller = new TextEditingController();
+  TextEditingController _jumTiketcontroller = new TextEditingController();
+  TextEditingController _totHrgcontroller = new TextEditingController();
+
   Contact newContact = new Contact(
     name: '',
-    email: '',
     museum: '',
     notelp: '',
     jum_tiket: '',
@@ -40,7 +45,7 @@ class _PesanTiket extends State<PesanTiket> {
 
     if (result == null) return;
     setState(() {
-      _controller.text = new DateFormat.yMd().format(result);
+      _tanggalcontroller.text = new DateFormat.yMd().format(result);
     });
   }
 
@@ -84,7 +89,7 @@ class _PesanTiket extends State<PesanTiket> {
       print('Tanggal : ${newContact.DoB}');
       print('NoTelp : ${newContact.notelp}');
       print('JumlahTiket : ${newContact.jum_tiket}');
-      print('Email : ${newContact.email}');
+      print('TotalHarga : ${newContact.tot_hrg}');
       print('================================================');
       print('Memesan tiket...');
     }
@@ -97,7 +102,6 @@ class _PesanTiket extends State<PesanTiket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(),
       key: scaffoldKey,
       body: SafeArea(
           bottom: false,
@@ -140,14 +144,13 @@ class _PesanTiket extends State<PesanTiket> {
                     ),
                   ),
                 ),
-                //const Text('Pesan Tiket Museum'),
-                //const Text('Harap mengisi identitas pengunjung museum'),
                 TextFormField(
                   decoration: InputDecoration(
                       icon: Icon(Icons.person),
                       hintText: 'Masukkan nama lengkap Anda',
                       labelText: 'Pemesan'),
                   inputFormatters: [new LengthLimitingTextInputFormatter(30)],
+                  controller: _namecontroller,
                   validator: (val) => val!.isEmpty
                       ? 'Mohon cek kembali, nama pemesan harus ada'
                       : null,
@@ -159,10 +162,11 @@ class _PesanTiket extends State<PesanTiket> {
                       hintText: 'Masukkan nama museum kunjungan Anda',
                       labelText: 'Museum'),
                   inputFormatters: [new LengthLimitingTextInputFormatter(30)],
+                  controller: _museumcontroller,
                   validator: (val) => val!.isEmpty
                       ? 'Mohon cek kembali, tujuan museum harus ada'
                       : null,
-                  onSaved: (val) => newContact.name = val ?? '',
+                  onSaved: (val) => newContact.museum = val ?? '',
                 ),
                 Row(
                   children: <Widget>[
@@ -172,7 +176,7 @@ class _PesanTiket extends State<PesanTiket> {
                           icon: Icon(Icons.calendar_today),
                           hintText: 'Silakan pilih tanggal kunjungan Anda',
                           labelText: 'Tanggal Kunjungan'),
-                      controller: _controller,
+                      controller: _tanggalcontroller,
                       validator: (val) => isValidate(val!)
                           ? null
                           : 'Mohon cek kembali tanggal kunjungan Anda',
@@ -182,7 +186,7 @@ class _PesanTiket extends State<PesanTiket> {
                     IconButton(
                       icon: Icon(Icons.more_horiz),
                       onPressed: () {
-                        _chooseDate(context, _controller.text);
+                        _chooseDate(context, _tanggalcontroller.text);
                       },
                     )
                   ],
@@ -193,21 +197,11 @@ class _PesanTiket extends State<PesanTiket> {
                       hintText: 'Masukkan nomor telepon Anda',
                       labelText: 'No Telepon'),
                   inputFormatters: [new LengthLimitingTextInputFormatter(30)],
+                  controller: _notelpcontroller,
                   validator: (val) => val!.isEmpty
                       ? 'Mohon cek kembali, no telepon Anda harus ada'
                       : null,
-                  onSaved: (val) => newContact.name = val ?? '',
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                      icon: Icon(Icons.email),
-                      hintText: 'Masukkan email Anda',
-                      labelText: 'Email'),
-                  inputFormatters: [new LengthLimitingTextInputFormatter(30)],
-                  validator: (val) => isValidEmail(val!)
-                      ? null
-                      : 'Mohon cek kembali email Anda',
-                  onSaved: (val) => newContact.email = val ?? '',
+                  onSaved: (val) => newContact.notelp = val ?? '',
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -215,10 +209,23 @@ class _PesanTiket extends State<PesanTiket> {
                       hintText: 'Masukkan jumlah pesanan tiket Anda',
                       labelText: 'Jumlah Tiket'),
                   inputFormatters: [new LengthLimitingTextInputFormatter(30)],
+                  controller: _jumTiketcontroller,
                   validator: (val) => val!.isEmpty
                       ? 'Mohon cek kembali, jumlah tiket pesanan harus ada'
                       : null,
-                  onSaved: (val) => newContact.name = val ?? '',
+                  onSaved: (val) => newContact.jum_tiket = val ?? '',
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.numbers),
+                      hintText: 'Masukkan total harga tiket Anda',
+                      labelText: 'Total Harga Tiket'),
+                  inputFormatters: [new LengthLimitingTextInputFormatter(30)],
+                  controller: _totHrgcontroller,
+                  validator: (val) => val!.isEmpty
+                      ? 'Mohon cek kembali, total harga tiket pesanan harus ada'
+                      : null,
+                  onSaved: (val) => newContact.tot_hrg = val ?? '',
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 40, top: 20),

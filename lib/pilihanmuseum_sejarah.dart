@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/pesantiket.dart';
 import 'package:mobile_piknikin/detailmuseum.dart';
@@ -11,8 +13,17 @@ class PilihanMuseum_sejarah extends StatefulWidget {
 }
 
 class _PilihanMuseum_sejarah extends State<PilihanMuseum_sejarah> {
+  final String url = 'http://127.0.0.1:8000/api/katagori/Sejarah';
+
+  Future getMuseums() async {
+    var response = await http.get(Uri.parse(url));
+    print(json.decode(response.body));
+    return json.decode(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
+    getMuseums();
     return MaterialApp(
       //title: title,
       home: Scaffold(

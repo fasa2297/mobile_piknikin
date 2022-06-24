@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
-  final String url = 'http://127.0.0.1:8000/api/museum/1';
+  final String url = 'http://127.0.0.1:8000/api/museum';
 
   Future getMuseums() async {
     var response = await http.get(Uri.parse(url));

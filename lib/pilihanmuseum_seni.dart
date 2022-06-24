@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/detailmuseum.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
@@ -10,151 +12,56 @@ class PilihanMuseum_seni extends StatefulWidget {
 }
 
 class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
+  final String url = 'http://127.0.0.1:8000/api/katagori/Seni';
+
+  Future getMuseums() async {
+    var response = await http.get(Uri.parse(url));
+    print(json.decode(response.body));
+    return json.decode(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //title: title,
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Row(
-            children: [
-              Image.asset(
-                'assets/images/Logo.png',
-                fit: BoxFit.contain,
-                height: 32,
-              ),
-            ],
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: Row(
+              children: [
+                Image.asset(
+                  'assets/images/Logo.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+              ],
+            ),
+            automaticallyImplyLeading: false,
+            leading: new IconButton(
+              icon: new Icon(Icons.arrow_back,
+                  color: Color.fromARGB(255, 15, 15, 15)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => KatagoriMuseum()),
+                );
+              },
+            ),
           ),
-          automaticallyImplyLeading: false,
-          leading: new IconButton(
-            icon: new Icon(Icons.arrow_back,
-                color: Color.fromARGB(255, 15, 15, 15)),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => KatagoriMuseum()),
-              );
-            },
-          ),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.fromLTRB(10, 20, 5, 0),
-              /*kiri */
-              child: Text(
-                'Museum Seni',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(8.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                child: InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Navbarr()),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch, // add this
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0),
-                        ),
-                        child: Image.asset('assets/images/museum_affandi.jpeg',
-                            // width: 300,
-                            height: 150,
-                            fit: BoxFit.fill),
-                      ),
-                      ListTile(
-                        title: Text('Monumen Affandi'),
-                        subtitle: Text(
-                            'Salah satu museum seni di DIY yang berada di tepi Sungai Gajah Wong ini menyimpan berbagai macam lukisan karya Affandi.'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(8.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                child: InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Navbarr()),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0),
-                        ),
-                        child: Image.asset(
-                            'assets/images/museum_jogja_gallery.jpeg',
-                            // width: 300,
-                            height: 150,
-                            fit: BoxFit.fill),
-                      ),
-                      ListTile(
-                        title: Text('Museum Jogja Gallery'),
-                        subtitle: Text(
-                            'Jogja Gallery adalah sebuah galeri seni visual sebagai wahana yang strategis untuk menampilkan aneka hasil karya seni.'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(8.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                child: InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DetailMuseum()),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0),
-                        ),
-                        child:
-                            Image.asset('assets/images/museum_sangkring.jpeg',
-                                // width: 300,
-                                height: 150,
-                                fit: BoxFit.fill),
-                      ),
-                      ListTile(
-                        title: Text('Sangkring Art Space'),
-                        subtitle: Text(
-                            'Ruang alternatif yang mengedepankan laku proyek seni eksperimental seniman dari berbagai latar belakang, termasuk usia dan disiplin ilmu.'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+          body: FutureBuilder(
+              future: getMuseums(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  //return Text('Data Oke');
+                  return ListView.builder(
+                      itemCount: snapshot.data['data'].length,
+                      itemBuilder: (context, index) {
+                        return Text(snapshot.data['data'][index]['nama']);
+                      });
+                } else {
+                  return Text('Data error');
+                }
+              })),
     );
   }
 }
