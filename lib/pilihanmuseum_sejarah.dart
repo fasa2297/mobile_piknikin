@@ -107,7 +107,7 @@ class _PilihanMuseum_sejarah extends State<PilihanMuseum_sejarah> {
                         );
                       });
                 } else {
-                  return Text('Data error');
+                  return Text('Loading data');
                 }
               })),
     );

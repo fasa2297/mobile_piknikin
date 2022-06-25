@@ -106,7 +106,7 @@ class _PilihanMuseum_budaya extends State<PilihanMuseum_budaya> {
                         );
                       });
                 } else {
-                  return Text('Data error');
+                  return Text('Loading data');
                 }
               })),
     );

@@ -106,7 +106,7 @@ class _PilihanMuseum_seni extends State<PilihanMuseum_seni> {
                         );
                       });
                 } else {
-                  return Text('Data error');
+                  return Text('Loading data');
                 }
               })),
     );
