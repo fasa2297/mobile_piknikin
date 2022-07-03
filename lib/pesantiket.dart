@@ -1,3 +1,7 @@
+// Nama : Anindika Riska Intan Fauzy
+// NIM  : 1301194254
+
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
@@ -21,6 +25,14 @@ class _PesanTiket extends State<PesanTiket> {
   TextEditingController _notelpcontroller = new TextEditingController();
   TextEditingController _jumTiketcontroller = new TextEditingController();
   TextEditingController _totHrgcontroller = new TextEditingController();
+
+  final String url = 'http://127.0.0.1:8000/api/store';
+
+  Future sendTikets() async {
+    var response = await http.post(Uri.parse(url));
+    //print(json.decode(response.body));
+    return json.decode(response.body);
+  }
 
   Contact newContact = new Contact(
     name: '',
@@ -62,12 +74,6 @@ class _PesanTiket extends State<PesanTiket> {
     } catch (e) {
       return null;
     }
-  }
-
-  bool isValidEmail(String input) {
-    final RegExp regExp = new RegExp(
-        r"^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)$");
-    return regExp.hasMatch(input);
   }
 
   showMessege(String messege, [MaterialColor color = Colors.red]) {
@@ -182,7 +188,7 @@ class _PesanTiket extends State<PesanTiket> {
                           : 'Mohon cek kembali tanggal kunjungan Anda',
                       onSaved: (val) =>
                           newContact.DoB = convertToDate(val ?? ''),
-                    )),
+                    )), //
                     IconButton(
                       icon: Icon(Icons.more_horiz),
                       onPressed: () {
@@ -230,7 +236,14 @@ class _PesanTiket extends State<PesanTiket> {
                 Container(
                   padding: EdgeInsets.only(left: 40, top: 20),
                   child: ElevatedButton(
-                      child: Text('Pesan'), onPressed: _submitForm),
+                    child: Text('Pesan'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PesanTiket()),
+                      );
+                    },
+                  ),
                 )
               ],
             ),

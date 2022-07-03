@@ -1,3 +1,9 @@
+// Nama : Anindika Riska Intan Fauzy
+// NIM  : 1301194254
+
+// Nama : Zahra Fadiah Putri
+// NIM  : 1301194212
+
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/detailmuseum.dart';
 import 'package:mobile_piknikin/pesantiket.dart';

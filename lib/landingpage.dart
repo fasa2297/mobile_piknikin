@@ -1,3 +1,6 @@
+// Nama : Muh Akib A Yani
+// NIM  : 1301194233
+
 import 'package:flutter/material.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
 

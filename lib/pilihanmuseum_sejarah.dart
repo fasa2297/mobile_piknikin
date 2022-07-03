@@ -1,3 +1,6 @@
+// Nama : Fauzi Arya Surya Abadi
+// NIM  : 1301194101
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -5,12 +8,6 @@ import 'package:mobile_piknikin/pesantiket.dart';
 import 'package:mobile_piknikin/detailmuseum.dart';
 import 'package:mobile_piknikin/katagorimuseum.dart';
 import 'package:mobile_piknikin/navigationbar.dart';
-
-/*Part of:
-
- Fauzi Arya Surya Abadi 
- 1301194101
-*/
 
 class PilihanMuseum_sejarah extends StatefulWidget {
   const PilihanMuseum_sejarah({super.key});

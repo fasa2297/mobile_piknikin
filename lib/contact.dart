@@ -1,3 +1,6 @@
+// Nama : Anindika Riska Intan Fauzy
+// NIM  : 1301194254
+
 class Contact {
   String name;
   String museum;
